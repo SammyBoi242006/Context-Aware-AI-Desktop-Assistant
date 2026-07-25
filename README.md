@@ -89,8 +89,4 @@ It follows a modular, layered architecture:
 4. **Data Layer:** Local SQLite database for conversation history, a config store for user settings, and a local cache/embedding store for fast context recall.
 5. **Deployment/Infrastructure:** Packaged desktop installers (electron-builder/Tauri bundler) per OS, an optional Docker container for the local LLM runtime, and an auto-update mechanism via GitHub Releases.
 
-See `architecture-diagram.drawio` (open in [draw.io](https://app.diagrams.net)) for the full visual architecture, including data flow arrows and a legend.
-
----
-
-*This project is developed for academic/coursework purposes as a demonstration of desktop application architecture, AI systems integration, and offline software engineering practices.*
+** See `architecture-diagram.drawio` (open in [draw.io](https://app.diagrams.net)) for the full visual architecture, including data flow arrows and a legend. **
