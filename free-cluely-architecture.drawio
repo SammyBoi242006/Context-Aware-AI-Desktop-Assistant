@@ -1,0 +1,190 @@
+<mxfile host="app.diagrams.net" modified="2026-09-11T00:00:00.000Z" agent="architecture" version="24.0.0" type="device">
+  <diagram id="arch-free-cluely" name="System Architecture">
+    <mxGraphModel dx="1400" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="980" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===== TITLE ===== -->
+        <mxCell id="title" value="Context-Aware AI Desktop Assistant — Layered + Event-Driven Architecture" style="text;html=1;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=19;fontColor=#1F2933;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="18" width="800" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Electron two-process model · React renderer · Google Gemini / Ollama inference" style="text;html=1;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=#7B8794;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="44" width="800" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- ===== LAYER BANDS ===== -->
+        <mxCell id="b1" value="1 · PRESENTATION LAYER  —  Renderer Process (sandboxed, no Node/OS access)" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F7F9FC;strokeColor=#D6DEE8;strokeWidth=1;verticalAlign=top;align=left;spacingLeft=14;spacingTop=8;fontFamily=Helvetica;fontSize=11;fontColor=#4A6E8F;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="70" width="980" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="2 · SECURE BRIDGE LAYER  —  preload.ts  ·  contextIsolation = true" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFFBF0;strokeColor=#E6D5A8;strokeWidth=1.5;dashed=1;dashPattern=6 4;verticalAlign=top;align=left;spacingLeft=14;spacingTop=8;fontFamily=Helvetica;fontSize=11;fontColor=#9A7B22;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="265" width="980" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="3 · APPLICATION / COORDINATION LAYER  —  Main Process" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F4F8F5;strokeColor=#CFE0D4;strokeWidth=1;verticalAlign=top;align=left;spacingLeft=14;spacingTop=8;fontFamily=Helvetica;fontSize=11;fontColor=#4E7D63;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="405" width="980" height="125" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" value="4 · DOMAIN / SERVICE LAYER" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F6F5FB;strokeColor=#DAD5EA;strokeWidth=1;verticalAlign=top;align=left;spacingLeft=14;spacingTop=8;fontFamily=Helvetica;fontSize=11;fontColor=#6A5D9B;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="555" width="980" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" value="5 · INFRASTRUCTURE / EXTERNAL SYSTEMS" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#F7F6F4;strokeColor=#E0DCD5;strokeWidth=1;verticalAlign=top;align=left;spacingLeft=14;spacingTop=8;fontFamily=Helvetica;fontSize=11;fontColor=#8A8378;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="715" width="980" height="125" as="geometry" />
+        </mxCell>
+
+        <!-- ===== LAYER 1 : PRESENTATION ===== -->
+        <mxCell id="n_app" value="&lt;b&gt;App.tsx&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#5B7185&quot;&gt;View router · event subscriber&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#EAF1F8;strokeColor=#4A6E8F;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontColor=#1F3B57;" vertex="1" parent="1">
+          <mxGeometry x="70" y="120" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n_pages" value="&lt;b&gt;Pages&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#5B7185&quot;&gt;Queue · Solutions · Debug&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#EAF1F8;strokeColor=#4A6E8F;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontColor=#1F3B57;" vertex="1" parent="1">
+          <mxGeometry x="285" y="120" width="200" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n_queuecomp" value="&lt;b&gt;ScreenshotQueue → ScreenshotItem&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#5B7185&quot;&gt;Composite component tree&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#EAF1F8;strokeColor=#4A6E8F;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;fontColor=#1F3B57;" vertex="1" parent="1">
+          <mxGeometry x="510" y="120" width="230" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n_ui" value="&lt;b&gt;QueueCommands · ModelSelector&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#5B7185&quot;&gt;Toast · Dialog (shared UI kit)&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#EAF1F8;strokeColor=#4A6E8F;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;fontColor=#1F3B57;" vertex="1" parent="1">
+          <mxGeometry x="765" y="120" width="235" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ===== LAYER 2 : BRIDGE ===== -->
+        <mxCell id="n_api" value="&lt;b&gt;window.electronAPI&lt;/b&gt;  &lt;font style=&quot;font-size:10px&quot;&gt;«Adapter»&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#8A7330&quot;&gt;Typed contract — the only dependency the UI has&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FDF3DC;strokeColor=#B8912F;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontColor=#5B4415;" vertex="1" parent="1">
+          <mxGeometry x="140" y="310" width="330" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n_events" value="&lt;b&gt;PROCESSING_EVENTS&lt;/b&gt;  &lt;font style=&quot;font-size:10px&quot;&gt;«Named channels»&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#8A7330&quot;&gt;INITIAL_START · PROBLEM_EXTRACTED · DEBUG_SUCCESS&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#FDF3DC;strokeColor=#B8912F;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontColor=#5B4415;" vertex="1" parent="1">
+          <mxGeometry x="560" y="310" width="330" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ===== LAYER 3 : APPLICATION ===== -->
+        <mxCell id="n_short" value="&lt;b&gt;ShortcutsHelper&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#5E7D6A&quot;&gt;Global hotkeys — delegation only&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E9F2EC;strokeColor=#4E7D63;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontColor=#22432F;" vertex="1" parent="1">
+          <mxGeometry x="70" y="450" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n_ipc" value="&lt;b&gt;ipcHandlers.ts&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#5E7D6A&quot;&gt;Channel wiring · error mapping&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E9F2EC;strokeColor=#4E7D63;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontColor=#22432F;" vertex="1" parent="1">
+          <mxGeometry x="310" y="450" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n_state" value="&lt;b&gt;AppState&lt;/b&gt;  &lt;font style=&quot;font-size:10px&quot;&gt;«Façade, Singleton»&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#5E7D6A&quot;&gt;Single source of truth: view · problemInfo · hasDebugged&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#DCEBE1;strokeColor=#3D6B52;strokeWidth=2;fontFamily=Helvetica;fontSize=12;fontColor=#22432F;" vertex="1" parent="1">
+          <mxGeometry x="550" y="450" width="290" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ===== LAYER 4 : DOMAIN ===== -->
+        <mxCell id="n_proc" value="&lt;b&gt;ProcessingHelper&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#6F659E&quot;&gt;Pipeline orchestration&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#EDEBF6;strokeColor=#6A5D9B;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontColor=#342B57;" vertex="1" parent="1">
+          <mxGeometry x="70" y="600" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n_win" value="&lt;b&gt;WindowHelper&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#6F659E&quot;&gt;Overlay geometry&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#EDEBF6;strokeColor=#6A5D9B;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontColor=#342B57;" vertex="1" parent="1">
+          <mxGeometry x="765" y="600" width="175" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n_shot" value="&lt;b&gt;ScreenshotHelper&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#6F659E&quot;&gt;Capture · FIFO queue (max 5)&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#EDEBF6;strokeColor=#6A5D9B;strokeWidth=1.5;fontFamily=Helvetica;fontSize=12;fontColor=#342B57;" vertex="1" parent="1">
+          <mxGeometry x="540" y="600" width="185" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n_llm" value="&lt;b&gt;LLMHelper&lt;/b&gt;  &lt;font style=&quot;font-size:10px&quot;&gt;«Strategy»&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#6F659E&quot;&gt;Prompting · provider abstraction&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#E4E0F2;strokeColor=#584A8C;strokeWidth=2;fontFamily=Helvetica;fontSize=12;fontColor=#342B57;" vertex="1" parent="1">
+          <mxGeometry x="305" y="600" width="215" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ===== LAYER 5 : INFRASTRUCTURE ===== -->
+        <mxCell id="n_worker" value="&lt;b&gt;worker-script / node&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#8A8378&quot;&gt;Background thread&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F0EEEA;strokeColor=#A69E92;strokeWidth=1.5;dashed=1;dashPattern=4 3;fontFamily=Helvetica;fontSize=11;fontColor=#4A443B;" vertex="1" parent="1">
+          <mxGeometry x="70" y="760" width="190" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n_electron" value="&lt;b&gt;Electron OS APIs&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#8A8378&quot;&gt;BrowserWindow · globalShortcut · Tray&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F0EEEA;strokeColor=#8A8378;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;fontColor=#4A443B;" vertex="1" parent="1">
+          <mxGeometry x="765" y="760" width="200" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n_capture" value="&lt;b&gt;screenshot-desktop · fs&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#8A8378&quot;&gt;userData/screenshots&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F0EEEA;strokeColor=#8A8378;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;fontColor=#4A443B;" vertex="1" parent="1">
+          <mxGeometry x="545" y="760" width="180" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n_gemini" value="&lt;b&gt;Gemini API&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#8A8378&quot;&gt;cloud&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F0EEEA;strokeColor=#8A8378;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;fontColor=#4A443B;" vertex="1" parent="1">
+          <mxGeometry x="290" y="760" width="100" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="n_ollama" value="&lt;b&gt;Ollama&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px;color:#8A8378&quot;&gt;localhost:11434&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F0EEEA;strokeColor=#8A8378;strokeWidth=1.5;fontFamily=Helvetica;fontSize=11;fontColor=#4A443B;" vertex="1" parent="1">
+          <mxGeometry x="400" y="760" width="125" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ===== DOWNWARD CONTROL FLOW (request / response) ===== -->
+        <mxCell id="e1" value="invoke()" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jumpStyle=arc;jumpSize=8;strokeColor=#4A6E8F;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;fontFamily=Helvetica;fontSize=10;fontColor=#4A6E8F;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_pages" target="n_api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="IPC channel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#B8912F;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;fontFamily=Helvetica;fontSize=10;fontColor=#8A7330;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_api" target="n_ipc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4E7D63;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_ipc" target="n_state">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4E7D63;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_short" target="n_ipc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="constructor injection" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jumpStyle=arc;jumpSize=8;strokeColor=#6A5D9B;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;fontFamily=Helvetica;fontSize=10;fontColor=#6A5D9B;labelBackgroundColor=#FFFFFF;exitX=0.15;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_state" target="n_proc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;jumpStyle=arc;jumpSize=8;strokeColor=#6A5D9B;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;exitX=0.35;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_state" target="n_win">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" value="callback injection&#10;(hide / show)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#6A5D9B;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;fontFamily=Helvetica;fontSize=10;fontColor=#6A5D9B;labelBackgroundColor=#FFFFFF;exitX=0.6;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_state" target="n_shot">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" value="delegates&#10;inference" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#584A8C;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;fontFamily=Helvetica;fontSize=10;fontColor=#584A8C;labelBackgroundColor=#F6F5FB;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_proc" target="n_llm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- infra edges -->
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#8A8378;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_win" target="n_electron">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#8A8378;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_shot" target="n_capture">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" value="USE_OLLAMA = false" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#8A8378;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;fontFamily=Helvetica;fontSize=9;fontColor=#8A8378;labelBackgroundColor=#F7F6F4;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_llm" target="n_gemini">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" value="USE_OLLAMA = true" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#8A8378;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;fontFamily=Helvetica;fontSize=9;fontColor=#8A8378;labelBackgroundColor=#F7F6F4;exitX=0.8;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_llm" target="n_ollama">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=4 3;strokeColor=#A69E92;strokeWidth=1.5;endArrow=block;endFill=1;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_proc" target="n_worker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ===== UPWARD EVENT FLOW (publish / subscribe) ===== -->
+        <mxCell id="ev1" value="webContents.send( )" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=7 4;strokeColor=#C2410C;strokeWidth=2;endArrow=blockThin;endFill=1;endSize=7;fontFamily=Helvetica;fontSize=10;fontColor=#C2410C;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_state" target="n_events">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1070" y="480" />
+              <mxPoint x="1070" y="338" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ev2" value="onProblemExtracted · onSolutionStart · onResetView" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=7 4;strokeColor=#C2410C;strokeWidth=2;endArrow=blockThin;endFill=1;endSize=7;fontFamily=Helvetica;fontSize=10;fontColor=#C2410C;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_events" target="n_app">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="725" y="252" />
+              <mxPoint x="165" y="252" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- ===== LEGEND ===== -->
+        <mxCell id="legend" value="" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#DDE3EA;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="866" width="980" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_t" value="LEGEND" style="text;html=1;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=10;fontColor=#9AA5B1;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="56" y="872" width="100" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_l1" value="" style="endArrow=block;endFill=1;endSize=6;html=1;strokeColor=#4E7D63;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="60" y="902" as="sourcePoint" />
+            <mxPoint x="105" y="902" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg_l1t" value="Synchronous call — request / response (downward dependency only)" style="text;html=1;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=10;fontColor=#52606D;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="112" y="894" width="380" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_l2" value="" style="endArrow=blockThin;endFill=1;endSize=7;html=1;dashed=1;dashPattern=7 4;strokeColor=#C2410C;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="902" as="sourcePoint" />
+            <mxPoint x="555" y="902" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="lg_l2t" value="Asynchronous event — publish / subscribe (upward notification)" style="text;html=1;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=10;fontColor=#52606D;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="562" y="894" width="360" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="lg_l3t" value="Dashed band = process / security boundary. No layer calls upward; no layer skips a layer." style="text;html=1;align=left;verticalAlign=middle;fontFamily=Helvetica;fontSize=10;fontColor=#9AA5B1;fontStyle=2;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="60" y="916" width="600" height="16" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
